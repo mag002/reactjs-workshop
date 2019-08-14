@@ -7,7 +7,7 @@ export default function CartQuantity(props) {
       onClick={props.click}
     >
       <div className="cart-img">
-        <div className="cart-number">2</div>
+        <div className="cart-number">{props.quantity}</div>
       </div>
     </div>
   );

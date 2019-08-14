@@ -12,13 +12,23 @@ export default class Cart extends React.Component {
   render() {
     return (
       <>
-        <CartQuantity outside click={this.toggleCart} />
+        <CartQuantity
+          outside
+          click={this.toggleCart}
+          quantity={this.props.cart.reduce((quantity, cartItem) => {
+            return quantity + cartItem.quantity;
+          }, 0)}
+        />
         <div className={`cart ${this.state.open ? "active" : ""}`}>
           <div className="close-cart" onClick={this.toggleCart}>
             X
           </div>
           <div className="title">
-            <CartQuantity />
+            <CartQuantity
+              quantity={this.props.cart.reduce((quantity, cartItem) => {
+                return quantity + cartItem.quantity;
+              }, 0)}
+            />
             <h4>Cart</h4>
           </div>
           <hr />
