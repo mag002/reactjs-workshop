@@ -1,6 +1,9 @@
 import React from "react";
 
 const CartItem = props => {
+  const handleClick = () => {
+    props.removeFromCart(props.id);
+  };
   return (
     <div className="cart-item d-flex">
       <img src={props.img} alt="" />
@@ -10,7 +13,7 @@ const CartItem = props => {
       </div>
       <div className="cart-item-price">{props.price}$</div>
       <div className="remove-cart-item">
-        <i className="fas fa-times" />
+        <i className="fas fa-times" onClick={handleClick} />
       </div>
     </div>
   );

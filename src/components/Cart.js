@@ -36,11 +36,13 @@ export default class Cart extends React.Component {
             {this.props.cart.map(cartItem => {
               return (
                 <CartItem
+                  id={cartItem.id}
                   key={cartItem.id}
                   title={cartItem.name}
                   img={cartItem.src}
                   quantity={cartItem.quantity}
                   price={cartItem.price}
+                  removeFromCart={this.props.removeFromCart}
                 />
               );
             })}

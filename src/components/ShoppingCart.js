@@ -149,6 +149,12 @@ export default class ShoppingCart extends Component {
       this.setState({ cart: [...this.state.cart, product] });
     }
   };
+  removeFromCart = id => {
+    let newCart = this.state.cart.filter(cartItem => {
+      return cartItem.id !== id;
+    });
+    this.setState({ cart: newCart });
+  };
   render() {
     return (
       <div>
@@ -165,7 +171,7 @@ export default class ShoppingCart extends Component {
             </div>
           </div>
         </div>
-        <Cart cart={this.state.cart} />
+        <Cart cart={this.state.cart} removeFromCart={this.removeFromCart} />
       </div>
     );
   }
