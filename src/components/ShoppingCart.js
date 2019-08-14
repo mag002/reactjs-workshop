@@ -134,15 +134,20 @@ export default class ShoppingCart extends Component {
         src: "https://k300.vn/upload/images/2019/T7/2-AK/T2009-300-2.jpg",
         price: 20,
         quantity: 1
-      },
-      {
-        id: 18,
-        name: "Spaceman T-shirt In Black",
-        src: "https://k300.vn/upload/images/2019/T7/3-AK/T1011-220-1.jpg",
-        price: 20,
-        quantity: 3
       }
     ]
+  };
+  addToCart = product => {
+    const index = this.state.cart.findIndex(cartItem => {
+      return cartItem.id === product.id;
+    });
+    if (index !== -1) {
+      let newCart = this.state.cart;
+      newCart[index].quantity++;
+      this.setState({ cart: newCart });
+    } else {
+      this.setState({ cart: [...this.state.cart, product] });
+    }
   };
   render() {
     return (
@@ -153,7 +158,10 @@ export default class ShoppingCart extends Component {
               <Filter />
             </div>
             <div className="col-md-9">
-              <AllProduct product={this.state.product} />
+              <AllProduct
+                product={this.state.product}
+                addToCart={this.addToCart}
+              />
             </div>
           </div>
         </div>

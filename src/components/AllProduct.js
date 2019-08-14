@@ -12,6 +12,8 @@ const AllProduct = props => {
               img={product.src}
               key={product.id}
               price={product.price}
+              id={product.id}
+              addToCart={props.addToCart}
             />
           );
         })}

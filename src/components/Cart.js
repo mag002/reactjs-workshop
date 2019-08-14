@@ -32,17 +32,26 @@ export default class Cart extends React.Component {
             <h4>Cart</h4>
           </div>
           <hr />
-
-          {this.props.cart.map(cartItem => {
-            return (
-              <CartItem
-                title={cartItem.name}
-                img={cartItem.src}
-                quantity={cartItem.quantity}
-                price={cartItem.price}
-              />
-            );
-          })}
+          <div className="cart-items">
+            {this.props.cart.map(cartItem => {
+              return (
+                <CartItem
+                  key={cartItem.id}
+                  title={cartItem.name}
+                  img={cartItem.src}
+                  quantity={cartItem.quantity}
+                  price={cartItem.price}
+                />
+              );
+            })}
+          </div>
+          <a href="#" className="checkout-btn">
+            Checkout -{" "}
+            {this.props.cart.reduce((sum, cartItem) => {
+              return sum + cartItem.quantity * cartItem.price;
+            }, 0)}
+            $
+          </a>
         </div>
       </>
     );
