@@ -33,19 +33,23 @@ export default class Cart extends React.Component {
           </div>
           <hr />
           <div className="cart-items">
-            {this.props.cart.map(cartItem => {
-              return (
-                <CartItem
-                  id={cartItem.id}
-                  key={cartItem.id}
-                  title={cartItem.name}
-                  img={cartItem.src}
-                  quantity={cartItem.quantity}
-                  price={cartItem.price}
-                  removeFromCart={this.props.removeFromCart}
-                />
-              );
-            })}
+            {this.props.cart.length > 0 ? (
+              this.props.cart.map(cartItem => {
+                return (
+                  <CartItem
+                    id={cartItem.id}
+                    key={cartItem.id}
+                    title={cartItem.name}
+                    img={cartItem.src}
+                    quantity={cartItem.quantity}
+                    price={cartItem.price}
+                    removeFromCart={this.props.removeFromCart}
+                  />
+                );
+              })
+            ) : (
+              <h1 className="text-white text-center">Your Cart Is Empty</h1>
+            )}
           </div>
           <a href="#" className="checkout-btn">
             Checkout -{" "}
