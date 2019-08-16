@@ -14,6 +14,7 @@ const AllProduct = props => {
               price={product.price}
               id={product.id}
               addToCart={props.addToCart}
+              size={product.size}
             />
           );
         })}

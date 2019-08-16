@@ -16,6 +16,7 @@ export default function Product(props) {
       <div className="product">
         <img className="product-img" src={props.img} />
         <h6 className="product-title">{props.title}</h6>
+        <p>Size: {props.size.map(s => ` ${s} `)}</p>
         <p className="product-price">{props.price}$</p>
         <a href="#" className="add-cart-btn" onClick={handleClick}>
           Add to Cart
