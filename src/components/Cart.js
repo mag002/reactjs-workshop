@@ -1,8 +1,9 @@
 import React from "react";
 import CartQuantity from "./CartQuantity";
 import CartItem from "./CartItem";
+import { connect } from "react-redux";
 
-export default class Cart extends React.Component {
+class Cart extends React.Component {
   state = {
     open: false
   };
@@ -23,13 +24,15 @@ export default class Cart extends React.Component {
           </div>
           <hr />
 
-          {this.props.cart.map(cartItem => {
+          {this.props.cartItem.map(cartItem => {
             return (
               <CartItem
+                id={cartItem.id}
                 title={cartItem.name}
                 img={cartItem.src}
                 quantity={cartItem.quantity}
                 price={cartItem.price}
+                remove={this.props.removeFromCart}
               />
             );
           })}
@@ -38,3 +41,22 @@ export default class Cart extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  console.log(ownProps);
+  return {
+    cartItem: state.cart_reducer.cart
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    removeFromCart: id => {
+      dispatch({ type: "REMOVE_CART", payload: id });
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Cart);

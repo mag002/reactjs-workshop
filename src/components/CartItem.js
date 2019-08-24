@@ -1,18 +1,19 @@
 import React from "react";
 
 const CartItem = props => {
+  const handleClick = () => {
+    props.remove(props.id);
+  };
   return (
-    <div className="cart-items">
-      <div className="cart-item d-flex">
-        <img src={props.img} alt="" />
-        <div className="cart-item-info">
-          <h5 className="cart-item-title">{props.title}</h5>
-          <p className="cart-item-quantity">Quantity: {props.quantity}</p>
-        </div>
-        <div className="cart-item-price">{props.price}$</div>
-        <div className="remove-cart-item">
-          <i className="fas fa-times" />
-        </div>
+    <div className="cart-item d-flex">
+      <img src={props.img} alt="" />
+      <div className="cart-item-info">
+        <h5 className="cart-item-title">{props.title}</h5>
+        <p className="cart-item-quantity">Quantity: {props.quantity}</p>
+      </div>
+      <div className="cart-item-price">{props.price}$</div>
+      <div className="remove-cart-item">
+        <i className="fas fa-times" onClick={handleClick} />
       </div>
     </div>
   );
